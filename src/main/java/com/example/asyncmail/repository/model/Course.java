@@ -11,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(name = "courses")
 public class Course {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
@@ -22,10 +23,10 @@ public class Course {
   @Column(name = "seats")
   private Integer seats;
 
-  @ManyToMany(mappedBy = "courses")
+  @ManyToMany
   @JoinTable(
       name = "registration",
-      joinColumns = {@JoinColumn(name = "course_id", nullable = false)},
-      inverseJoinColumns = {@JoinColumn(name = "user_id", nullable = false)})
+      joinColumns = @JoinColumn(name = "course_id", nullable = false),
+      inverseJoinColumns = @JoinColumn(name = "user_id", nullable = false))
   private List<User> users;
 }
