@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    username: ${SPRING_DATASOURCE_USER}
+    url: ${SPRING_DATASOURCE_URL}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+  flyway:
+    baseline-on-migrate: true
