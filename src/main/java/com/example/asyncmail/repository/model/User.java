@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.util.List;
 import java.util.UUID;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Getter
@@ -26,6 +28,9 @@ public class User {
   @Column(name = "last_name")
   private String lastName;
 
-  @ManyToMany(mappedBy = "users")
+  @ManyToMany(
+      mappedBy = "users",
+      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+  @OnDelete(action = OnDeleteAction.CASCADE)
   private List<Course> courses;
 }
