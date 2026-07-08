@@ -20,7 +20,6 @@ jacoco {
 
 
 repositories {
-    implementation 'org.xhtmlrenderer:flying-saucer-core:10.3.0'
     implementation 'org.xhtmlrenderer:flying-saucer-pdf:10.3.0'
     implementation 'org.thymeleaf:thymeleaf'
 
