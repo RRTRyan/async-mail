@@ -20,6 +20,7 @@ public class RegistrationService {
   private final EventProducer<RegistrationEmail> eventProducer;
   private final CourseRepository courseRepository;
   private final UserRepository userRepository;
+  private final FileService fileService;
 
   @SneakyThrows
   @Transactional
@@ -30,6 +31,11 @@ public class RegistrationService {
     users.add(user);
     course.setUsers(users);
     courseRepository.save(course);
-    eventProducer.accept(List.of(RegistrationEmail.builder().to(user.getEmail()).build()));
+    eventProducer.accept(
+        List.of(
+            RegistrationEmail.builder()
+                .to(user.getEmail())
+                .registrationFileURI(fileService.uploadRegistrationPDF(user, course))
+                .build()));
   }
 }

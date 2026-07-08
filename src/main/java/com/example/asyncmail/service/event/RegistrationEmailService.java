@@ -25,7 +25,9 @@ public class RegistrationEmailService implements Consumer<RegistrationEmail> {
             List.of(),
             List.of(),
             "Course registration",
-            "Your registration to the course have been successfully saved",
+            "<div><p>Your registration to the course have been successfully saved</p><a href=\""
+                + registrationEmail.getRegistrationFileURI()
+                + "\">Get your ticket here</a></div>",
             List.of()));
   }
 

@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RegistrationEmail extends PojaEvent {
   private String to;
+  private String registrationFileURI;
 
   @Override
   public Duration maxConsumerDuration() {
