@@ -36,7 +36,7 @@ public class FileService {
     templateEngine.setTemplateResolver(templateResolver);
     Context context = new Context();
     context.setVariables(Map.of("userName", user.getFirstName(), "courseName", course.getName()));
-    return templateEngine.process("registrationPDF", context);
+    return templateEngine.process("RegistrationTemplate", context);
   }
 
   @SneakyThrows
