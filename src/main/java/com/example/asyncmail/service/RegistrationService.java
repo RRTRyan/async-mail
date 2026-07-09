@@ -7,6 +7,8 @@ import com.example.asyncmail.repository.UserRepository;
 import com.example.asyncmail.repository.model.Course;
 import com.example.asyncmail.repository.model.User;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.BadRequestException;
+import jakarta.ws.rs.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -25,12 +27,23 @@ public class RegistrationService {
   @SneakyThrows
   @Transactional
   public void register(UUID courseId, UUID userId) {
-    Course course = courseRepository.findById(courseId).orElseThrow();
-    User user = userRepository.findById(userId).orElseThrow();
+    Course course =
+        courseRepository
+            .findById(courseId)
+            .orElseThrow(() -> new NotFoundException("Course not found"));
+    User user =
+        userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
+
+    if (course.getUsers().contains(user)) {
+      throw new BadRequestException("User already exists");
+    }
+
     List<User> users = new ArrayList<>(course.getUsers());
     users.add(user);
     course.setUsers(users);
+
     courseRepository.save(course);
+
     eventProducer.accept(
         List.of(
             RegistrationEmail.builder()
