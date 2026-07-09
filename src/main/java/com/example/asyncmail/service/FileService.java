@@ -30,6 +30,7 @@ public class FileService {
 
   private String populateRegistrationTemplate(User user, Course course) {
     ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+    templateResolver.setPrefix("templates/");
     templateResolver.setSuffix(".html");
     templateResolver.setTemplateMode(TemplateMode.HTML);
     TemplateEngine templateEngine = new TemplateEngine();
