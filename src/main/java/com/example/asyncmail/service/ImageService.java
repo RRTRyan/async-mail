@@ -55,7 +55,6 @@ public class ImageService {
 
   @SneakyThrows
   private File createImageFile(MultipartFile image) {
-    // TODO: validate mutlipart file
     String fileName = image.getOriginalFilename();
     File file =
         File.createTempFile(

@@ -3,11 +3,9 @@ package com.example.asyncmail.validator;
 import com.example.asyncmail.dto.ImageRequest;
 import jakarta.ws.rs.BadRequestException;
 import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Component
 public class ImageRequestValidator {
