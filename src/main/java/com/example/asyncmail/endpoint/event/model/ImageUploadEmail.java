@@ -8,9 +8,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RegistrationEmail extends PojaEvent {
+public class ImageUploadEmail extends PojaEvent {
   private String to;
-  private String registrationFileURI;
+  private String imageFileURI;
 
   @Override
   public Duration maxConsumerDuration() {
